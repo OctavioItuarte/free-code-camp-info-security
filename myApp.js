@@ -30,8 +30,6 @@ app.use(helmet.ieNoOpen());
 
 app.use(helmet.noCache());
 
-const bcrypt = require('bcrypt');
-
 
 module.exports = app;
 const api = require('./server.js');
