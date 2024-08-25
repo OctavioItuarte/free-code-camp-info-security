@@ -25,7 +25,7 @@ app.use(helmet.contentSecurityPolicy({
 
     defaultSrc: ["'self'"],
 
-    scriptSrc: ["'self'", "'unsafe-inline'", 'trusted-cdn.com']
+    scriptSrc: ["'self'", 'trusted-cdn.com']
     }
 }
 ));
