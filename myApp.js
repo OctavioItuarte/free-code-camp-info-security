@@ -17,7 +17,7 @@ app.use(helmet({
     maxAge: 7776000, 
     force: true
   },
-  
+
 }));
 
 app.use(helmet.hidePoweredBy());
@@ -30,7 +30,7 @@ app.use(helmet.ieNoOpen());
 
 app.use(helmet.noCache());
 
-
+const bcrypt = require('bcrypt');
 
 
 module.exports = app;
