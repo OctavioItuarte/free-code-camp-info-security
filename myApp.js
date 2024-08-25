@@ -2,9 +2,25 @@ const express = require('express');
 const helmet = require('helmet');
 const app = express();
 
-app.use(helmet.hidePoweredBy());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+  
+      defaultSrc: ["'self'"],
+  
+      scriptSrc: ["'self'", 'trusted-cdn.com']
+      }
+  },
+  frameguard: {action: 'deny'},
+  dnsPrefetchControl: false,
+  hsts:{
+    maxAge: 7776000, 
+    force: true
+  },
+  
+}));
 
-app.use(helmet.frameguard({action: 'deny'}));
+app.use(helmet.hidePoweredBy());
 
 app.use(helmet.xssFilter());
 
@@ -12,23 +28,7 @@ app.use(helmet.noSniff());
 
 app.use(helmet.ieNoOpen());
 
-app.use(helmet.hsts(
-  {maxAge: 7776000, 
-  force: true}
-));
-
-app.use(helmet.dnsPrefetchControl());
-
 app.use(helmet.noCache());
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-
-    defaultSrc: ["'self'"],
-
-    scriptSrc: ["'self'", 'trusted-cdn.com']
-    }
-}
-));
 
 
 
